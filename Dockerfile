@@ -17,6 +17,9 @@ RUN uv venv venv --python 3.11 \
 
 ENV PATH="/opt/hermes-agent/venv/bin:$PATH"
 
+# Pre-build the web UI at build time to avoid runtime npm failures
+RUN cd /opt/hermes-agent/web && npm install && npm run build
+
 RUN mkdir -p /root/.hermes/{cron,sessions,logs,memories,skills,pairing,hooks,image_cache,audio_cache} \
     && cp cli-config.yaml.example /root/.hermes/config.yaml \
     && touch /root/.hermes/.env
