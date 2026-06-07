@@ -32,6 +32,9 @@ fi
 
 PORT="${PORT:-9119}"
 
+# Start the messaging gateway in the background (runs as root on this image)
+env HERMES_ALLOW_ROOT_GATEWAY=1 hermes gateway run > "$HERMES_HOME/logs/gateway-boot.log" 2>&1 &
+
 exec hermes dashboard \
   --host 0.0.0.0 \
   --port "$PORT" \
