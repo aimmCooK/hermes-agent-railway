@@ -4,6 +4,7 @@ set -e
 AUTO_UPDATE="${AUTO_UPDATE:-true}"
 HERMES_HOME="${HERMES_HOME:-/root/.hermes}"
 mkdir -p "$HERMES_HOME"
+export HERMES_ALLOW_ROOT_GATEWAY=1
 
 # Persist the Railway session token into Hermes' env file.
 if [ -n "${HERMES_DASHBOARD_SESSION_TOKEN:-}" ]; then
